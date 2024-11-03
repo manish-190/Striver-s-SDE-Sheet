@@ -1,0 +1,24 @@
+class Solution {
+    public boolean isBalanced(String num) {
+        boolean c1 = false;
+        
+        int size = num.length();
+        int checkb[] = new int[size];
+        
+        for (int i = 0; i < size; i++) {
+            checkb[i] = Character.getNumericValue(num.charAt(i));
+        }
+        
+        int sodd = 0, seven = 0;
+        
+        for (int i = 0; i < size; i++) {
+            if (i % 2 == 0) {
+                seven += checkb[i];
+            } else {
+                sodd += checkb[i];
+            }
+        }
+        
+        return seven == sodd; 
+    }
+}
