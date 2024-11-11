@@ -1,0 +1,36 @@
+class Solution {
+    public boolean hasIncreasingSubarrays(List<Integer> nums, int k) {
+        int n = nums.size();
+        if (n < 2 * k) return false;
+
+        if (k == 1) return true;  
+
+        int incLength = 1;
+        for (int i = 1; i < n; i++) {
+            if (nums.get(i) > nums.get(i - 1)) {
+                incLength++;
+            } else {
+                incLength = 1;
+            }
+
+            if (incLength >= k) {
+                if (i + 1 + k <= n && isIncreasing(nums, i + 1, k)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isIncreasing(List<Integer> nums, int startIndex, int k) {
+        for (int i = startIndex + 1; i < startIndex + k; i++) {
+            if (nums.get(i) <= nums.get(i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    
+    
+    }
+}
