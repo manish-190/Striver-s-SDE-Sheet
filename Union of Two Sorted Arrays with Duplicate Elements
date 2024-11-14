@@ -1,0 +1,42 @@
+int n = a.length;
+        int m = b.length;
+        int i = 0, j = 0;
+        ArrayList<Integer> Union = new ArrayList<>();
+
+        while (i < n && j < m) {
+            if (a[i] < b[j]) {
+                if (Union.size() == 0 || Union.get(Union.size() - 1) != a[i]) {
+                    Union.add(a[i]);
+                }
+                i++;
+            } else if (a[i] > b[j]) {
+                if (Union.size() == 0 || Union.get(Union.size() - 1) != b[j]) {
+                    Union.add(b[j]);
+                }
+                j++;
+            } else { // a[i] == b[j]
+                if (Union.size() == 0 || Union.get(Union.size() - 1) != a[i]) {
+                    Union.add(a[i]);
+                }
+                i++;
+                j++;
+            }
+        }
+
+        
+        while (i < n) {
+            if (Union.get(Union.size() - 1) != a[i]) {
+                Union.add(a[i]);
+            }
+            i++;
+        }
+
+        
+        while (j < m) {
+            if (Union.get(Union.size() - 1) != b[j]) {
+                Union.add(b[j]);
+            }
+            j++;
+        }
+
+        return Union;
